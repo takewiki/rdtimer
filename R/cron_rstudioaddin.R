@@ -36,7 +36,7 @@ cron_rstudioaddin <- function(RscriptRepository = Sys.getenv("CRON_LIVE", unset 
   
   ui <- miniUI::miniPage(
  
-    miniUI::gadgetTitleBar("棱星数据定时任务(R版)"),
+    miniUI::gadgetTitleBar("棱星数据定时任务自定义ID(R版)"),
     
     miniUI::miniTabstripPanel(
       miniUI::miniTabPanel(title = '创建新任务', icon = shiny::icon("cloud-upload"),
@@ -50,7 +50,7 @@ cron_rstudioaddin <- function(RscriptRepository = Sys.getenv("CRON_LIVE", unset 
                                             shiny::column(6,
                                                           shiny::div(class = "control-label", shiny::strong("选中的R脚本")),
                                                           shiny::verbatimTextOutput('currentfileselected'),
-                                                          shiny::textInput('jobid', label = "任务ID标识(系统自动生成)", value = sprintf("job_%s", digest(runif(1)))),
+                                                          shiny::textInput('jobid', label = "任务ID标识(系统自动生成)", value = "job_id"),
                                                          
                                                           shiny::dateInput('date', label = "生效日期:", startview = "month", weekstart = 1, min = Sys.Date()),
                                                           
@@ -192,6 +192,7 @@ cron_rstudioaddin <- function(RscriptRepository = Sys.getenv("CRON_LIVE", unset 
       
       runme <- getSelectedFile(inputui = input$fileSelect)
       myscript <- paste0(RscriptRepository, "/", basename(runme))
+      print(myscript)
       if(runme != myscript){
         done <- file.copy(runme, myscript, overwrite = TRUE)
         if(!done){
@@ -223,9 +224,9 @@ cron_rstudioaddin <- function(RscriptRepository = Sys.getenv("CRON_LIVE", unset 
       # Reset ui inputs
       shiny::updateDateInput(session, inputId = 'date', value = Sys.Date())
       shiny::updateTextInput(session, inputId = "hour", value = format(Sys.time() + 122, "%H:%M"))
-      shiny::updateRadioButtons(session, inputId = 'task', selected = "ONCE")
-      shiny::updateTextInput(session, inputId = "jobid", value = sprintf("job_%s", digest(runif(1))))
-      shiny::updateTextInput(session, inputId = "jobdescription", value = "I execute things")
+      shiny::updateRadioButtons(session, inputId = 'task', selected = "一次性")
+      shiny::updateTextInput(session, inputId = "jobid", value = "job_id")
+      shiny::updateTextInput(session, inputId = "jobdescription", value = "定时任务描述")
       shiny::updateTextInput(session, inputId = "jobtags", value = "")
       shiny::updateTextInput(session, inputId = "rscript_args", value = "")
       # output$fileSelect <- shiny::renderUI({
