@@ -1,0 +1,20 @@
+Package: rdtimer
+Type: Package
+Title: Schedule R Scripts 
+Version: 1.0
+Authors: hulilei <hulilei@takewiki.com.cn>
+Maintainer: xiaotao <xiaotao@takewiki.com.cn>
+Description: rds timer for schedule jobs
+URL: https://github.com/takewiki/rdtimer
+Imports: 
+    digest
+Suggests: 
+    miniUI,
+    shiny (>= 0.11),
+    shinyFiles (>= 0.6.0),
+    tinytest
+License: MIT + file LICENSE
+OS_type: unix
+SystemRequirements: cron
+RoxygenNote: 7.1.1
+Encoding: UTF-8

@@ -1,0 +1,4 @@
+Name: 定时任务
+Description: 同步R语言脚本
+Binding: cron_rstudioaddin
+Interactive: true

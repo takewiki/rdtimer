@@ -1,0 +1,67 @@
+Package: cronR
+================
+
+Version: 0.6.5 [2023-01-06]
+
+- cron_rscript: fix 'the condition has length > 1' when passing on rscript_args  
+
+Version: 0.6.4 [2022-11-29]
+
+- cron_add, cron_rm now also allow to add/remove cron jobs from another user by passing the user argument
+
+Version: 0.6.3 [2022-05-09]
+
+- cron_rscript gains an argument, type, which allows for different command types such as those that generate an output on error. The current command type is the "default" value.
+- cron_rscript gains an argument, ... allowing to add extra options specific to the type
+- Changes to deparse_crontab(): all cronR jobs will be placed at the bottom of the crontab now instead of the top.
+
+Version: 0.6.2 [2022-02-16]
+
+- Call "crontab -r" without "-u user" when the user parameter is empty.
+- Omit empty line when no env is passed in cron_add
+
+Version: 0.6.1 [2021-01-27]
+
+- cron_add gains an argument, env, which sets environment variables for a cron job by a named vector.
+- remove VignetteBuilder entry in DESCRIPTION
+
+Version: 0.6.0 [2021-09-02]
+
+- Make sure always ask for approval when executing cron_add, cron_rm, cron_clear unless explicitely indicating ask=FALSE
+- Removed vignette as it is available in the README
+
+Version: 0.5.1 [2021-08-26]
+
+- Switch unit testing from testthat to tinytest
+- Fix unit test if user has access rights to /opt folder (e.g. as root)
+
+Version: 0.5.0 [2021-08-20]
+
+- Change default directory of R script deployment in the addin: cron_rstudioaddin
+- Fix issue #42 - warning when passing user argument
+
+Version: 0.4.2 [2018-03-07]
+
+- Allow to specify working directory for launching scripts
+- Add rmarkdown as dependency 
+
+Version: 0.4.0 [2018-03-07]
+- Allow creating any cron schedule + update rstudio addin + added examples on that
+- No longer use the extdata folder if the user does not have right permissions
+
+Version: 0.3.0 [2017-03-03]
+- Add cron_rscript
+- Add examples
+- Make sure Rscript uses full path and shQuote scripts
+- Roxygen updates
+- Vignette
+
+
+Version: 0.2.1 [2016-07-06]
+- Use shinyfiles package to allow to use files on a server instead of uploading them
+
+
+Version: 0.2.0 [2016-06-14]
+- Added RStudio add-in
+- Fixed issues with days_of_week, days_of_month and months parsing if several were given
+- R CMD check happiness
